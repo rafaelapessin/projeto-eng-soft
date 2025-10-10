@@ -17,6 +17,14 @@ npm 11.0.0
 node -v
 npm -v
 
+## Criando e commitando
+git init 
+git status
+git add .
+git commit -m "mgs"
+git remote add origin <url>
+git push origin main
+
 ## Como rodar
 git clone <url>
 cd projeto-eng-soft
