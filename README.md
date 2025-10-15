@@ -5,11 +5,11 @@
 Projeto desenvolvido para a disciplina de Engenharia de Software com aplicação web simples utilizando Node.js, testes e mock de API.
 
 ## Principais requisitos
-→ App Node.js com no mínimo 3 telas
-→ Testes unitários
-→ Testes de integração
-→ Testes de aceitação
-→ Comunicação com API externa mockada
+- App Node.js com no mínimo 3 telas
+- Testes unitários
+- Testes de integração
+- Testes de aceitação
+- Comunicação com API externa mockada
 
 ## Versões
 node v23.6.0 
