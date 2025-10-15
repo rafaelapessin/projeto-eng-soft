@@ -24,20 +24,34 @@ function gerarId() {
   return Date.now().toString() + Math.floor(Math.random() * 1000)
 }
 
-// Formata data DD-MM-AAAA
-function formatarDataDDMMYYYY(dataISO) {
-  const data = new Date(dataISO)
+// 🧩 Função para converter "YYYY-MM-DD" em Date (modo local, sem UTC)
+function parseDataLocal(dateString) {
+  const [ano, mes, dia] = dateString.split('-').map(Number)
+  return new Date(ano, mes - 1, dia)
+}
+
+// Formata data DD-MM-AAAA (com base local)
+function formatarDataDDMMYYYY(dateString) {
+  const data = parseDataLocal(dateString)
   const dia = String(data.getDate()).padStart(2, '0')
   const mes = String(data.getMonth() + 1).padStart(2, '0')
   const ano = data.getFullYear()
   return `${dia}-${mes}-${ano}`
 }
 
-// Formata data com dia da semana
+// Formata data com dia da semana (base local)
 function formatarDataComDia(dateString) {
-  const diasSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
-  
-  const data = new Date(dateString)
+  const diasSemana = [
+    "Domingo",
+    "Segunda-feira",
+    "Terça-feira",
+    "Quarta-feira",
+    "Quinta-feira",
+    "Sexta-feira",
+    "Sábado"
+  ]
+
+  const data = parseDataLocal(dateString)
   if (isNaN(data)) return "Data inválida"
 
   const diaSemana = diasSemana[data.getDay()]
@@ -52,14 +66,17 @@ function formatarDataComDia(dateString) {
 app.get('/', (req, res) => {
   const reservasOrdenadas = [...reservas]
     .sort((a, b) => {
-      if (a.dia === b.dia) return a.aula - b.aula
-      return new Date(a.dia) - new Date(b.dia)
+      const dataA = parseDataLocal(a.dia)
+      const dataB = parseDataLocal(b.dia)
+
+      if (dataA.getTime() === dataB.getTime()) return a.aula - b.aula
+      return dataA - dataB
     })
     .map(r => ({
       ...r,
       diaFormatado: formatarDataComDia(r.dia)
     }))
-  
+
   res.render('index', { reservas: reservasOrdenadas })
 })
 
@@ -76,22 +93,37 @@ app.post('/reservar', async (req, res) => {
   const hoje = new Date().toISOString().split('T')[0]
 
   // Validação de campos obrigatórios
-  if (!sala || !dia || !aula || !professor || !disciplina || !turma ) {
-    return res.render('nova', { erro: 'Todos os campos são obrigatórios!', dados: dadosPreenchidos, hoje })
+  if (!sala || !dia || !aula || !professor || !disciplina || !turma) {
+    return res.render('nova', {
+      erro: 'Todos os campos são obrigatórios!',
+      dados: dadosPreenchidos,
+      hoje
+    })
   }
 
   // Validação de data passada
-  const dataReserva = new Date(dia)
-  const hojeData = new Date()
-  hojeData.setHours(0,0,0,0)
-  if (dataReserva < hojeData) {
-    return res.render('nova', { erro: 'Não é possível agendar em datas passadas!', dados: dadosPreenchidos, hoje })
+  const dataReserva = parseDataLocal(dia)
+  const dataHoje = new Date()
+  dataHoje.setHours(0, 0, 0, 0)
+
+  if (dataReserva < dataHoje) {
+    return res.render('nova', {
+      erro: 'Não é possível agendar em datas passadas!',
+      dados: dadosPreenchidos,
+      hoje
+    })
   }
 
   // Verificar conflito de horário
-  const conflito = reservas.find(r => r.sala === sala && r.dia === dia && r.aula == aula)
+  const conflito = reservas.find(
+    r => r.sala === sala && r.dia === dia && r.aula == aula
+  )
   if (conflito) {
-    return res.render('nova', { erro: 'Esta sala já está reservada para este horário!', dados: dadosPreenchidos, hoje })
+    return res.render('nova', {
+      erro: 'Esta sala já está reservada para este horário!',
+      dados: dadosPreenchidos,
+      hoje
+    })
   }
 
   // Criar reserva
@@ -102,7 +134,7 @@ app.post('/reservar', async (req, res) => {
   await axios.post('https://mockapi.local/reservas', novaReserva).catch(() => {})
 
   // Renderiza sucesso com data formatada
-  res.render('sucesso', { 
+  res.render('sucesso', {
     reserva: {
       ...novaReserva,
       diaFormatado: formatarDataComDia(novaReserva.dia)
