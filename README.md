@@ -22,14 +22,15 @@ git init
 git status
 git add .
 git commit -m "mgs"
-git remote add origin <url>
+git remote add origin https://github.com/rafaelapessin/projeto-eng-soft.git
 git push origin main
 
 ## Como rodar
-git clone <url>
+git clone https://github.com/rafaelapessin/projeto-eng-soft.git
 cd projeto-eng-soft
-npm install
-npm start
+npm install ---> instala as dependências
+npm start OU node app.js
+Abrir: http://localhost:3333
 
 ## Testes
 npm test

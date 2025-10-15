@@ -1,20 +1,22 @@
 {
-  "name": "projeto-eng-soft",
+  "name": "agendamento-escolar",
   "version": "1.0.0",
-  "main": "servidor.js",
+  "description": "Sistema simples de agendamento de salas e laboratórios escolares.",
+  "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "jest",
-    "start": "node servidor.js"
+    "start": "node app.js",
+    "test": "jest --coverage"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "fastify": "^5.6.1"
+    "axios": "^1.6.8",
+    "body-parser": "^1.20.2",
+    "bootstrap": "^5.3.3",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2"
   },
   "devDependencies": {
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "supertest": "^7.1.1"
   }
 }
