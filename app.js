@@ -1,3 +1,4 @@
+// app.js
 import express from 'express'
 import bodyParser from 'body-parser'
 import axios from 'axios'
@@ -8,7 +9,6 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const app = express()
-const porta = 3333
 
 // Configurações do EJS
 app.set('view engine', 'ejs')
@@ -25,13 +25,13 @@ function gerarId() {
 }
 
 // 🧩 Função para converter "YYYY-MM-DD" em Date (modo local, sem UTC)
-function parseDataLocal(dateString) {
+export function parseDataLocal(dateString) {
   const [ano, mes, dia] = dateString.split('-').map(Number)
   return new Date(ano, mes - 1, dia)
 }
 
-// Formata data DD-MM-AAAA (com base local)
-function formatarDataDDMMYYYY(dateString) {
+// Formata data DD-MM-AAAA (base local)
+export function formatarDataDDMMYYYY(dateString) {
   const data = parseDataLocal(dateString)
   const dia = String(data.getDate()).padStart(2, '0')
   const mes = String(data.getMonth() + 1).padStart(2, '0')
@@ -40,7 +40,7 @@ function formatarDataDDMMYYYY(dateString) {
 }
 
 // Formata data com dia da semana (base local)
-function formatarDataComDia(dateString) {
+export function formatarDataComDia(dateString) {
   const diasSemana = [
     "Domingo",
     "Segunda-feira",
@@ -61,6 +61,8 @@ function formatarDataComDia(dateString) {
 
   return `${diaSemana}, ${dia}-${mes}-${ano}`
 }
+
+// Rotas
 
 // Página inicial: lista de reservas
 app.get('/', (req, res) => {
@@ -155,7 +157,13 @@ app.post('/excluir-todas', (req, res) => {
   res.redirect('/')
 })
 
-// Iniciar servidor
-app.listen(porta, () => {
-  console.log(`Servidor rodando em http://localhost:${porta}`)
-})
+// Exportações
+export { app, reservas } // app para testes, reservas para inspeção em testes
+
+// Apenas inicializa servidor se o arquivo for chamado diretamente
+if (process.argv[1].endsWith('app.js')) {
+  const porta = 3333
+  app.listen(porta, () => {
+    console.log(`Servidor rodando em http://localhost:${porta}`)
+  })
+}

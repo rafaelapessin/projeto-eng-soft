@@ -2,26 +2,45 @@
 import puppeteer from 'puppeteer';
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { app } from '../../app.js';
+import http from 'http';
 
-const feature = loadFeature(path.join(__dirname, '../../features/reserva.feature'));
-const urlBase = 'http://127.0.0.1:3333';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Carrega o arquivo .feature
+const feature = loadFeature(path.join(__dirname, '../../tests/e2e/features/reserva.feature'));
 
 defineFeature(feature, test => {
   let browser, page;
+  let server, serverUrl;
 
   beforeAll(async () => {
+    // Inicia servidor para testes
+    server = http.createServer(app);
+    await new Promise(resolve => {
+      server.listen(0, () => {
+        const { port } = server.address();
+        serverUrl = `http://127.0.0.1:${port}`;
+        resolve();
+      });
+    });
+
+    // Inicia Puppeteer
     browser = await puppeteer.launch({ headless: true });
     page = await browser.newPage();
   });
 
   afterAll(async () => {
     await browser.close();
+    server.close();
   });
 
   test('Criar reserva com sucesso', ({ given, when, then, and }) => {
 
     given('que o usuário acessa a página de nova reserva', async () => {
-      await page.goto(`${urlBase}/nova`);
+      await page.goto(`${serverUrl}/nova`);
       const titulo = await page.title();
       expect(titulo).toBe('Nova Reserva');
     });
@@ -46,7 +65,7 @@ defineFeature(feature, test => {
     });
 
     and('a reserva deve aparecer na lista de reservas', async () => {
-      await page.goto(`${urlBase}/`);
+      await page.goto(`${serverUrl}/`);
       const cards = await page.$$eval('.card', cards => cards.length);
       expect(cards).toBeGreaterThan(0);
     });

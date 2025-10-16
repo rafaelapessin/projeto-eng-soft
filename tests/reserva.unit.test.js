@@ -13,6 +13,7 @@ describe('Funções utilitárias', () => {
   test('formatarDataComDia retorna o dia da semana correto', () => {
     const str = formatarDataComDia('2025-10-16');
     expect(str).toContain('Quinta-feira');
+    expect(str).toContain('16-10-2025');
   });
 
   test('gerarId gera strings únicas', () => {
@@ -21,4 +22,5 @@ describe('Funções utilitárias', () => {
     expect(typeof id1).toBe('string');
     expect(id1).not.toBe(id2);
   });
+
 });
