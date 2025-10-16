@@ -67,5 +67,12 @@ Projeto desenvolvido para a disciplina de Engenharia de Software com aplicação
 5. Abra o endereço local onde o servidor está rodando: http://localhost:3333
 
 ## Testes
+- Unitários: Testam uma função ou módulo isoladamente
+- Integração: Testam como diferentes módulos ou serviços funcionam juntos
+- Aceitação / E2E (End-to-End): Testam o sistema como um todo, verificando fluxos completos
 - npm test
 - npm run coverage
+
+npm install --save-dev cross-env
+npm install --save-dev jest-cucumber@^4.0.3 cross-env
+npm install --save-dev jest-cucumber axios-mock-adapter
