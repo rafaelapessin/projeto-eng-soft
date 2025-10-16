@@ -1,11 +1,12 @@
 # Projeto Final - Engenharia de Software
-# Autor: Rafaela Amorim Pessin
+## Autor: Rafaela Amorim Pessin
 
 ## Objetivo
 Projeto desenvolvido para a disciplina de Engenharia de Software com aplicação web simples utilizando Node.js, testes e mock de API.
 
 ## Principais requisitos
-- App Node.js com no mínimo 3 telas
+- App usando Node.js
+- Mínimo de 3 telas de interação com o usuário
 - Testes unitários
 - Testes de integração
 - Testes de aceitação
@@ -15,13 +16,37 @@ Projeto desenvolvido para a disciplina de Engenharia de Software com aplicação
 - node v23.6.0 
 - npm 11.0.0
 - git version 2.39.2.windows.1
+- jest@29.7.0
+
+## Preparando o ambiente
+1. Instale o node.js LTS em: https://nodejs.org/en/download
+2. Confirme a instalação no terminal digitando os comandos:
+    - node -v
+    - npm -v
+- Se ambos mostrarem uma versão, está tudo certo
+3. Crie o projeto
+    - mkdir meu-projeto
+    - cd meu-projeto
+    - npm init -y
+- Isso cria o arquivo package.json, que gerencia dependências
+4. Instale o Express
+    - npm install express
+    - npm install -g express-generator
+5. Instale e configure o Jest
+    - npm install --save-dev jest
 
 ## Comandos
-- Para verificar se o Node.js está instalado, assim como sua versão, digite no terminal: node -v
-- Para verificar a versão utilizada do npm, digite no terminal: npm -v
-- Para verificar se o git está instalado, digite no terminal: git --version
-    - Se aparecer algo como git version 2.xx, o Git está instalado
-    - Se não estiver, baixe aqui: https://git-scm.com/downloads
+- Para verificar se o Node.js está instalado, assim como sua versão, digite no terminal: 
+    - node -v
+- Para verificar a versão utilizada do npm, digite no terminal: 
+    - npm -v
+- Para verificar se o git está instalado, digite no terminal: 
+    - git --version
+        - Se aparecer algo como git version 2.xx, o Git está instalado
+        - Se não estiver, baixe aqui: https://git-scm.com/downloads
+- Para verificar a versão do jest, use um dos dois comandos: 
+    - npx jest --version
+    - npm list jest
 
 ## Criando um repositório
 1. Abra seu projeto no VS Code (Arquivo → Abrir Pasta)
