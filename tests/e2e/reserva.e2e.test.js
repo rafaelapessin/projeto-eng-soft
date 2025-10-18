@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Carrega o arquivo .feature
-const feature = loadFeature(path.join(__dirname, '../../tests/e2e/features/reserva.feature'));
+const feature = loadFeature(path.join(__dirname, '../../features/reserva.feature'));
 
 defineFeature(feature, test => {
   let browser, page;
@@ -59,7 +59,7 @@ defineFeature(feature, test => {
       await page.waitForSelector('.alert-success');
     });
 
-    then('ele deve ver a mensagem "Reserva concluída com sucesso!"', async () => {
+    then('ele deve ver a mensagem “Reserva concluída com sucesso!"', async () => {
       const msg = await page.$eval('.alert-success h3', el => el.textContent);
       expect(msg).toBe('Reserva concluída com sucesso!');
     });

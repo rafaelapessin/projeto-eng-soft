@@ -14,13 +14,14 @@ const app = express()
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // "Banco de dados" em memória
 let reservas = []
 
 // Função para gerar ID único
-function gerarId() {
+export function gerarId() {
   return Date.now().toString() + Math.floor(Math.random() * 1000)
 }
 

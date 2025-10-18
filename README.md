@@ -1,5 +1,5 @@
 # Projeto Final - Engenharia de Software
-## Autor: Rafaela Amorim Pessin
+### Autor: Rafaela Amorim Pessin
 
 ## Objetivo
 Projeto desenvolvido para a disciplina de Engenharia de Software com aplicação web simples utilizando Node.js, testes e mock de API.
@@ -17,6 +17,15 @@ Projeto desenvolvido para a disciplina de Engenharia de Software com aplicação
 - npm 11.0.0
 - git version 2.39.2.windows.1
 - jest@29.7.0
+
+## Descrição da aplicação
+- Aplicação web simples para agendamento de laboratórios em uma escola.
+- O sistema permite que o usuário faça reservas de laboratórios, visualize reservas existentes e cancele reservas.
+- As reservas são organizadas por laboratório, e ordenadas por data e aula.
+- O sistema faz a validação e evita conflitos de agendamento.
+- Todos os campos são obrigatórios para efetuar uma reserva.
+- O sistema utiliza mock de API para simular uma API externa.
+- Utiliza Node.js, Express, Jest e Axios.
 
 ## Preparando o ambiente
 1. Instale o node.js LTS em: https://nodejs.org/en/download
@@ -47,6 +56,10 @@ Projeto desenvolvido para a disciplina de Engenharia de Software com aplicação
 - Para verificar a versão do jest, use um dos dois comandos: 
     - npx jest --version
     - npm list jest
+- Para instalar ferramentas para escrever testes com Jest e configurar variáveis de ambiente de forma correta em diferentes sistemas, execute o seguinte comando:
+    - npm install --save-dev jest-cucumber@^4.0.3 cross-env
+- Para instalar ferramentas para escrever testes com Jest e simular solicitações HTTP com Axios:
+    - npm install --save-dev jest-cucumber axios-mock-adapter
 
 ## Criando um repositório
 1. Abra seu projeto no VS Code (Arquivo → Abrir Pasta)
@@ -70,9 +83,7 @@ Projeto desenvolvido para a disciplina de Engenharia de Software com aplicação
 - Unitários: Testam uma função ou módulo isoladamente
 - Integração: Testam como diferentes módulos ou serviços funcionam juntos
 - Aceitação / E2E (End-to-End): Testam o sistema como um todo, verificando fluxos completos
-- npm test
-- npm run coverage
-
-npm install --save-dev cross-env
-npm install --save-dev jest-cucumber@^4.0.3 cross-env
-npm install --save-dev jest-cucumber axios-mock-adapter
+- Executa os testes automatizados do projeto conforme definido no package.json:
+  - npm test
+- Gera um relatório de cobertura de testes, ou seja, quais partes do código foram testadas):
+  - npm run coverage

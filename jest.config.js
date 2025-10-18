@@ -1,4 +1,6 @@
 export default {
-  testEnvironment: 'node',
-  transform: {}
+    testEnvironment: 'node',
+    transform: {},
+    transformIgnorePatterns: ['node_modules/(?!(@nestjs)/)'],
+    testMatch: ['**/*.test.js'],
 };
