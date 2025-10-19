@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1760833565597" clover="3.2.0">
-  <project timestamp="1760833565597" name="All files">
+<coverage generated="1760835498994" clover="3.2.0">
+  <project timestamp="1760835498995" name="All files">
     <metrics statements="66" coveredstatements="44" conditionals="21" coveredconditionals="11" methods="15" coveredmethods="7" elements="102" coveredelements="62" complexity="0" loc="66" ncloc="66" packages="1" files="1" classes="1"/>
     <file name="app.js" path="C:\Users\AEVO TECH\Desktop\projeto-eng-soft\app.js">
       <metrics statements="66" coveredstatements="44" conditionals="21" coveredconditionals="11" methods="15" coveredmethods="7"/>
-      <line num="8" count="2" type="stmt"/>
-      <line num="9" count="2" type="stmt"/>
-      <line num="11" count="2" type="stmt"/>
-      <line num="14" count="2" type="stmt"/>
-      <line num="15" count="2" type="stmt"/>
-      <line num="16" count="2" type="stmt"/>
-      <line num="17" count="2" type="stmt"/>
-      <line num="18" count="2" type="stmt"/>
-      <line num="21" count="2" type="stmt"/>
+      <line num="8" count="3" type="stmt"/>
+      <line num="9" count="3" type="stmt"/>
+      <line num="11" count="3" type="stmt"/>
+      <line num="14" count="3" type="stmt"/>
+      <line num="15" count="3" type="stmt"/>
+      <line num="16" count="3" type="stmt"/>
+      <line num="17" count="3" type="stmt"/>
+      <line num="18" count="3" type="stmt"/>
+      <line num="21" count="3" type="stmt"/>
       <line num="25" count="3" type="stmt"/>
       <line num="30" count="4" type="stmt"/>
       <line num="31" count="4" type="stmt"/>
@@ -29,7 +29,7 @@
       <line num="60" count="2" type="stmt"/>
       <line num="61" count="2" type="stmt"/>
       <line num="63" count="2" type="stmt"/>
-      <line num="69" count="2" type="stmt"/>
+      <line num="69" count="3" type="stmt"/>
       <line num="70" count="1" type="stmt"/>
       <line num="72" count="0" type="stmt"/>
       <line num="73" count="0" type="stmt"/>
@@ -37,10 +37,10 @@
       <line num="76" count="0" type="stmt"/>
       <line num="78" count="0" type="stmt"/>
       <line num="83" count="1" type="stmt"/>
-      <line num="87" count="2" type="stmt"/>
+      <line num="87" count="3" type="stmt"/>
       <line num="88" count="0" type="stmt"/>
       <line num="89" count="0" type="stmt"/>
-      <line num="93" count="2" type="stmt"/>
+      <line num="93" count="3" type="stmt"/>
       <line num="94" count="1" type="stmt"/>
       <line num="95" count="1" type="stmt"/>
       <line num="96" count="1" type="stmt"/>
@@ -59,14 +59,14 @@
       <line num="134" count="1" type="stmt"/>
       <line num="137" count="1" type="stmt"/>
       <line num="140" count="1" type="stmt"/>
-      <line num="149" count="2" type="stmt"/>
+      <line num="149" count="3" type="stmt"/>
       <line num="150" count="0" type="stmt"/>
       <line num="151" count="0" type="stmt"/>
       <line num="152" count="0" type="stmt"/>
-      <line num="156" count="2" type="stmt"/>
+      <line num="156" count="3" type="stmt"/>
       <line num="157" count="1" type="stmt"/>
       <line num="158" count="1" type="stmt"/>
-      <line num="165" count="2" type="cond" truecount="1" falsecount="1"/>
+      <line num="165" count="3" type="cond" truecount="1" falsecount="1"/>
       <line num="166" count="0" type="stmt"/>
       <line num="167" count="0" type="stmt"/>
       <line num="168" count="0" type="stmt"/>
