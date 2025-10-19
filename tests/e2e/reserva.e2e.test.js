@@ -54,7 +54,8 @@ defineFeature( feature, (test)=>{
 
       and('envia o formulário', async () => {
         await page.click('button[type="submit"]');
-        await page.waitForSelector('.alert-success');
+        // await page.waitForSelector('.alert-success p-4');
+        await page.waitForSelector('.alert alert-success p-4', { visible: true });
       });
 
       then(/^ele deve ver a mensagem "(.*)"$/, async (mensagemEsperada) => {
