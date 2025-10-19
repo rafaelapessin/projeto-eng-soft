@@ -45,32 +45,19 @@ describe('Testes da aplicação', () => {
   // Reseta reservas antes de cada teste
   beforeEach(() => {
     reservas = []
-  })
-
-  // test('Deve criar uma nova reserva com sucesso', async () => {
-  //   const res = await request(app).post('/reservar').send({
-  //     sala: 'Laboratório de Informática',
-  //     dia: '2025-10-10',
-  //     aula: '1',
-  //     turma: '2ºIPI01',
-  //     professor: 'João',
-  //     disciplina: 'Matemática'
-  //   })
-  //   expect(res.statusCode).toBe(200)
-  //   expect(res.text).toBe('Reserva criada')
-  // })
+  })  
 
   test('Deve criar uma nova reserva com sucesso', async () => {
   const res = await request(app)
     .post('/reservar')
     .set('Content-Type', 'application/json')
     .send({
-      sala: 'Laboratorio de Informatica', // sem acento para testar
+      sala: 'Laboratório de Informática', 
       dia: '2025-10-10',
-      aula: 1,                             // como número
-      turma: '2IPI01',                    // sem º para testar
-      professor: 'Joao',                  // sem acento
-      disciplina: 'Matematica'            // sem acento
+      aula: 1,                             
+      turma: '2IPI01',                    
+      professor: 'João',                  
+      disciplina: 'Matemática'            
     });
 
   expect(res.statusCode).toBe(200);

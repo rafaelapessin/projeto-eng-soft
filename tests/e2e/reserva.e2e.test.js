@@ -1,10 +1,13 @@
 // tests/e2e/reserva.e2e.test.js
-import puppeteer from 'puppeteer';
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { app } from '../../app.js';
 import http from 'http';
+        import { createRequire } from 'module';
+        const require = createRequire(import.meta.url);
+
+const puppeteer = require("puppeteer");
 
 // const { defineFeature, loadFeature } = require("jest-cucumber");
 // const path = require("path");
@@ -23,7 +26,6 @@ defineFeature( feature, (test)=>{
   beforeAll(async()=>{
       browser = await puppeteer.launch({
           headless: true, 
-          // slowMo: 30,
       });
       page = await browser.newPage();
       await page.goto(serverUrl);
@@ -61,7 +63,7 @@ defineFeature( feature, (test)=>{
       });
 
       and('a reserva deve aparecer na lista de reservas', async () => {
-        await page.goto(`${serverUrl}/`);
+        await page.goto(`${serverUrl}/reservar`);
         const cards = await page.$$eval('.card', cards => cards.length);
         expect(cards).toBeGreaterThan(0);
       });
