@@ -84,6 +84,8 @@ Projeto desenvolvido para a disciplina de Engenharia de Software com aplicação
 - Integração: Testam como diferentes módulos ou serviços funcionam juntos
 - Aceitação / E2E (End-to-End): Testam o sistema como um todo, verificando fluxos completos
 - Executa os testes automatizados do projeto conforme definido no package.json:
-  - npm test
+  - npm run test
 - Gera um relatório de cobertura de testes, ou seja, quais partes do código foram testadas):
-  - npm run coverage
+  - npm run --coverage
+npm install node-fetch@2
+npm audit fix --force

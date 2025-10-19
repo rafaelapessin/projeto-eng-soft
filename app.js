@@ -25,7 +25,7 @@ export function gerarId() {
   return Date.now().toString() + Math.floor(Math.random() * 1000)
 }
 
-// 🧩 Função para converter "YYYY-MM-DD" em Date (modo local, sem UTC)
+// Função para converter "YYYY-MM-DD" em Date (modo local, sem UTC)
 export function parseDataLocal(dateString) {
   const [ano, mes, dia] = dateString.split('-').map(Number)
   return new Date(ano, mes - 1, dia)

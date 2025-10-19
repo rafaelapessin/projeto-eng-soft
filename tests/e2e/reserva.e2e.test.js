@@ -6,36 +6,31 @@ import { fileURLToPath } from 'url';
 import { app } from '../../app.js';
 import http from 'http';
 
+// const { defineFeature, loadFeature } = require("jest-cucumber");
+// const path = require("path");
+// const puppeteer = require("puppeteer");
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const feature = loadFeature(path.join(__dirname, "../../features/reserva.feature"));
 
-// Carrega o arquivo .feature
-const feature = loadFeature(path.join(__dirname, '../../features/reserva.feature'));
+defineFeature( feature, (test)=>{
+    let browser, page;
 
-defineFeature(feature, test => {
-  let browser, page;
-  let server, serverUrl;
+    const filePath = 'http://127.0.0.1:${port}';
 
-  beforeAll(async () => {
-    // Inicia servidor para testes
-    server = http.createServer(app);
-    await new Promise(resolve => {
-      server.listen(0, () => {
-        const { port } = server.address();
-        serverUrl = `http://127.0.0.1:${port}`;
-        resolve();
-      });
+    beforeAll(async()=>{
+        browser = await puppeteer.launch({
+            headless: true, 
+            // slowMo: 30,
+        });
+        page = await browser.newPage();
+        await page.goto(filePath);
     });
 
-    // Inicia Puppeteer
-    browser = await puppeteer.launch({ headless: true });
-    page = await browser.newPage();
-  });
-
-  afterAll(async () => {
-    await browser.close();
-    server.close();
-  });
+    afterAll(async()=>{
+        await browser.close();
+    });
 
   test('Criar reserva com sucesso', ({ given, when, then, and }) => {
 
