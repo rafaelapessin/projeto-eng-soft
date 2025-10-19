@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1760842098129" clover="3.2.0">
-  <project timestamp="1760842098129" name="All files">
+<coverage generated="1760842361414" clover="3.2.0">
+  <project timestamp="1760842361414" name="All files">
     <metrics statements="67" coveredstatements="45" conditionals="21" coveredconditionals="11" methods="15" coveredmethods="7" elements="103" coveredelements="63" complexity="0" loc="67" ncloc="67" packages="1" files="1" classes="1"/>
     <file name="app.js" path="C:\Users\AEVO TECH\Desktop\projeto-eng-soft\app.js">
       <metrics statements="67" coveredstatements="45" conditionals="21" coveredconditionals="11" methods="15" coveredmethods="7"/>
