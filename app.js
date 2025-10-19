@@ -53,7 +53,9 @@ export function formatarDataComDia(dateString) {
   ]
 
   const data = parseDataLocal(dateString)
-  if (isNaN(data)) return "Data inválida"
+  if (isNaN(data)) {
+      return "Data inválida"
+  }
 
   const diaSemana = diasSemana[data.getDay()]
   const dia = String(data.getDate()).padStart(2, '0')
@@ -92,7 +94,7 @@ app.get('/nova', (req, res) => {
 // Cadastrar nova reserva
 app.post('/reservar', async (req, res) => {
   const { sala, dia, aula, professor, disciplina, turma } = req.body
-  console.log(req.body)
+  // console.log(req.body)
   const dadosPreenchidos = { sala, dia, aula, professor, disciplina, turma }
   const hoje = new Date().toISOString().split('T')[0]
 
