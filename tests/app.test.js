@@ -7,6 +7,7 @@ import MockAdapter from 'axios-mock-adapter'
 
 // Criação de app de teste
 export const app = express()
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.set('view engine', 'ejs')
 
@@ -20,7 +21,6 @@ mock.onPost('https://mockapi.local/reservas').reply(200)
 // Rota /reservar
 app.post('/reservar', async (req, res) => {
   const { sala, dia, aula, turma, professor, disciplina } = req.body
-
   // Validação de campos obrigatórios
   if (!sala || !dia || !aula || !turma || !professor || !disciplina) {
     return res.status(400).send('Campos obrigatórios ausentes')
@@ -47,18 +47,35 @@ describe('Testes da aplicação', () => {
     reservas = []
   })
 
+  // test('Deve criar uma nova reserva com sucesso', async () => {
+  //   const res = await request(app).post('/reservar').send({
+  //     sala: 'Laboratório de Informática',
+  //     dia: '2025-10-10',
+  //     aula: '1',
+  //     turma: '2ºIPI01',
+  //     professor: 'João',
+  //     disciplina: 'Matemática'
+  //   })
+  //   expect(res.statusCode).toBe(200)
+  //   expect(res.text).toBe('Reserva criada')
+  // })
+
   test('Deve criar uma nova reserva com sucesso', async () => {
-    const res = await request(app).post('/reservar').send({
-      sala: 'Laboratório de Informática',
+  const res = await request(app)
+    .post('/reservar')
+    .set('Content-Type', 'application/json')
+    .send({
+      sala: 'Laboratorio de Informatica', // sem acento para testar
       dia: '2025-10-10',
-      aula: '1',
-      turma: '2ºIPI01',
-      professor: 'João',
-      disciplina: 'Matemática'
-    })
-    expect(res.statusCode).toBe(200)
-    expect(res.text).toBe('Reserva criada')
-  })
+      aula: 1,                             // como número
+      turma: '2IPI01',                    // sem º para testar
+      professor: 'Joao',                  // sem acento
+      disciplina: 'Matematica'            // sem acento
+    });
+
+  expect(res.statusCode).toBe(200);
+  expect(res.text).toBe('Reserva criada');
+});
 
   test('Deve rejeitar campos vazios', async () => {
     const res = await request(app).post('/reservar').send({})

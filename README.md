@@ -27,6 +27,9 @@ Projeto desenvolvido para a disciplina de Engenharia de Software com aplicação
 - O sistema utiliza mock de API para simular uma API externa.
 - Utiliza Node.js, Express, Jest e Axios.
 
+## Instalando as dependências
+- npm install ou yarn
+
 ## Preparando o ambiente
 1. Instale o node.js LTS em: https://nodejs.org/en/download
 2. Confirme a instalação no terminal digitando os comandos:
@@ -60,6 +63,10 @@ Projeto desenvolvido para a disciplina de Engenharia de Software com aplicação
     - npm install --save-dev jest-cucumber@^4.0.3 cross-env
 - Para instalar ferramentas para escrever testes com Jest e simular solicitações HTTP com Axios:
     - npm install --save-dev jest-cucumber axios-mock-adapter
+- Instala a versão 2 do pacote node-fetch no seu projeto:
+    - npm install node-fetch@2
+- Tenta corrigir vulnerabilidades no seu projeto
+    - npm audit fix --force
 
 ## Criando um repositório
 1. Abra seu projeto no VS Code (Arquivo → Abrir Pasta)
@@ -87,5 +94,3 @@ Projeto desenvolvido para a disciplina de Engenharia de Software com aplicação
   - npm run test
 - Gera um relatório de cobertura de testes, ou seja, quais partes do código foram testadas):
   - npm run --coverage
-npm install node-fetch@2
-npm audit fix --force
